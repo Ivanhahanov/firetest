@@ -1,0 +1,14 @@
+target:
+  type: web
+  address: localhost
+  users: 10
+
+actions:
+  - type: shell
+    command: nmap target
+  - type: shell
+    command: curl target
+  - type: shell
+    command: ffuf -w common.txt -u http://target/FUZZ
+  - type: shell
+    command: ffuf -w common.txt -X POST -d "username=admin\&password=FUZZ" -u http://target/login.php -fc 401

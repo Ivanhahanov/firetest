@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  firetest:
+    build: .
+    image: explabs/firetest
+    command: run -c /etc/firetest/fire.yaml
+    volumes:
+      - ./fire.yaml:/etc/firetest/fire.yaml
+  target:
+    image: nginx
+    command: [nginx-debug, '-g', 'daemon off;']
